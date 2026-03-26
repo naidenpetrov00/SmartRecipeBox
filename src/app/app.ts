@@ -1,4 +1,5 @@
 import { Component, signal } from '@angular/core';
+
 import { RouterOutlet } from '@angular/router';
 
 @Component({
@@ -8,5 +9,13 @@ import { RouterOutlet } from '@angular/router';
   styleUrl: './app.css',
 })
 export class App {
-  protected readonly title = signal('SmartRecipeBox');
+  protected title = signal('SmartRecipeBox');
+  
+  protected helloClick():void {
+    console.log('Hello button clicked!');
+  }
+
+  protected goodbye():void {
+    console.log('Goodbye button clicked!');
+  }
 }
