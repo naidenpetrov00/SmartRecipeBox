@@ -1,3 +1,14 @@
 <h1>{{ title() }}</h1>
-<button (click)="helloClick()">Hello Text</button>
-<button (click)="goodbye()">Goodbay Text</button>
+
+<section>
+  <h2>{{ recipe().name }}</h2>
+  <p>{{ recipe().description }}</p>
+  <button (click)="nextRecipe()">Next</button>
+  <p>{{ servings() }}</p>
+  <button (click)="increaseServings()">+</button>
+  <button (click)="decreaseServings()">-</button>
+
+  @for (ingredient of adjustedIngredients(); track $index) {
+    <p>{{ ingredient }}</p>
+  }
+</section>
