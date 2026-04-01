@@ -1,13 +1,13 @@
 <h1>{{ title() }}</h1>
 
 <section>
-  <h2>{{ recipe().name }}</h2>
+  <h2 [title]="recipe().name">{{ recipe().name }}</h2>
   <p>{{ recipe().description }}</p>
   <button (click)="nextRecipe()">Next</button>
+  <img [src]="recipe().imgUrl" />
   <p>{{ servings() }}</p>
   <button (click)="increaseServings()">+</button>
-  <button (click)="decreaseServings()">-</button>
-
+  <button [disabled]="servings() <= 1" (click)="decreaseServings()">-</button>
   @for (ingredient of adjustedIngredients(); track $index) {
     <p>{{ ingredient }}</p>
   }

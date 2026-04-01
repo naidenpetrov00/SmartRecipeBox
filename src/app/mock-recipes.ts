@@ -12,6 +12,7 @@ export const MOCK_RECIPES: RecipeModel[] = [
       { name: 'Pecorino Romano Cheese', quantity: 50, unit: 'g' },
       { name: 'Black Pepper', quantity: 1, unit: 'tsp' },
     ],
+    imgUrl: 'https://miro.medium.com/v2/resize:fit:1032/1*3pNsGsnR309Wpjb0PA99DQ.png',
   },
   {
     id: 2,
@@ -23,5 +24,6 @@ export const MOCK_RECIPES: RecipeModel[] = [
       { name: 'Fresh Basil', quantity: 1, unit: 'bunch' },
       { name: 'Extra Virgin Olive Oil', quantity: 2, unit: 'tbsp' },
     ],
+    imgUrl: 'pic_trulli.jpg',
   },
 ];
