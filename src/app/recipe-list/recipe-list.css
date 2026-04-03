@@ -1,0 +1,15 @@
+.recipe-container {
+  display: flex;
+  gap: 16px;
+  margin: 16px;
+  padding: 16px;
+}
+
+button {
+  height: 32px;
+  align-self: center;
+}
+
+section {
+  justify-items: center;
+}

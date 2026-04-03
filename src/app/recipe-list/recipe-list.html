@@ -1,20 +1,13 @@
 <section>
-  <button type="button" (click)="nextRecipe()">Next recipe</button>
-  <h2 [title]="recipe().name">{{ recipe().name }}</h2>
-  <p>{{ recipe().description }}</p>
-  <img [src]="recipe().imgUrl" [alt]="recipe().name" />
-
-  <p>Servings: {{ servings() }}</p>
-  <button type="button" (click)="increaseServings()">+</button>
-  <button
-    type="button"
-    [disabled]="servings() <= 1"
-    (click)="decreaseServings()"
-  >
-    -
-  </button>
-
-  @for (ingredient of adjustedIngredients(); track ingredient.name) {
-    <p>{{ ingredient.name }}: {{ ingredient.quantity }} {{ ingredient.unit }}</p>
-  }
+  <div class="recipe-container">
+    <button (click)="toogleFavouriteStatus()">
+      @if (recipe().isFavorite) {
+        ★
+      } @else {
+        ☆
+      }
+    </button>
+    <app-recipe-detail [recipe]="recipe()"></app-recipe-detail>
+    <button type="button" (click)="nextRecipe()">Next recipe</button>
+  </div>
 </section>
