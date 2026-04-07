@@ -1,13 +1,22 @@
 <section>
+  <label for="searchTerm">Search Recipes</label>
+  <input
+    id="searchTerm"
+    type="text"
+    [ngModel]="searchTerm()"
+    (ngModelChange)="searchTerm.set($event)"
+    placeholder="recipe name"
+  />
   <div class="recipe-container">
-    <button (click)="toogleFavouriteStatus()">
-      @if (recipe().isFavorite) {
-        ★
-      } @else {
-        ☆
-      }
-    </button>
-    <app-recipe-detail [recipe]="recipe()"></app-recipe-detail>
-    <button type="button" (click)="nextRecipe()">Next recipe</button>
+    @for (recipe of filteredBySearchRecipes(); track $index) {
+      <button (click)="toogleFavouriteStatus(recipe)">
+        @if (recipe.isFavorite) {
+          ★
+        } @else {
+          ☆
+        }
+      </button>
+      <app-recipe-detail [recipe]="recipe"></app-recipe-detail>
+    }
   </div>
 </section>
