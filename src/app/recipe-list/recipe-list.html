@@ -3,13 +3,13 @@
   <input
     id="searchTerm"
     type="text"
-    [ngModel]="searchTerm()"
-    (ngModelChange)="searchTerm.set($event)"
+    [ngModel]="recipeService.searchTerm()"
+    (ngModelChange)="recipeService.searchTerm.set($event)"
     placeholder="recipe name"
   />
   <div class="recipe-container">
-    @for (recipe of filteredBySearchRecipes(); track $index) {
-      <button (click)="toogleFavouriteStatus(recipe)">
+    @for (recipe of recipeService.filteredBySearchRecipes(); track $index) {
+      <button (click)="recipeService.toogleFavouriteStatus(recipe.id)">
         @if (recipe.isFavorite) {
           ★
         } @else {
