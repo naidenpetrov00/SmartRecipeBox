@@ -1,5 +1,8 @@
-import { Component, computed, input, signal } from '@angular/core';
+import { Component, computed, inject, input, signal } from '@angular/core';
 import { Ingredient, RecipeModel } from '../models';
+
+import { ActivatedRoute } from '@angular/router';
+import { RecipeService } from '../recipe-service';
 
 @Component({
   selector: 'app-recipe-detail',
@@ -8,7 +11,20 @@ import { Ingredient, RecipeModel } from '../models';
   styleUrl: './recipe-detail.css',
 })
 export class RecipeDetail {
-  readonly recipe = input.required<RecipeModel>();
+  protected recipeService = inject(RecipeService);
+  private id = 0;
+
+  constructor(private route: ActivatedRoute) {}
+
+  ngOnInit() {
+    this.id = Number(this.route.snapshot.paramMap.get('id'));
+    console.log(this.id);
+  }
+
+  protected readonly recipe = computed(() =>
+    this.recipeService.recipes().find((r) => r.id == this.id)!,
+  );
+
   protected readonly servings = signal(1);
 
   protected readonly adjustedIngredients = computed<Ingredient[]>(() =>

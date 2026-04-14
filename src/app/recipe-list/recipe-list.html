@@ -7,16 +7,14 @@
     (ngModelChange)="recipeService.searchTerm.set($event)"
     placeholder="recipe name"
   />
-  <div class="recipe-container">
-    @for (recipe of recipeService.filteredBySearchRecipes(); track $index) {
-      <button (click)="recipeService.toogleFavouriteStatus(recipe.id)">
-        @if (recipe.isFavorite) {
-          ★
-        } @else {
-          ☆
-        }
-      </button>
-      <app-recipe-detail [recipe]="recipe"></app-recipe-detail>
-    }
-  </div>
+  <nav>
+    <ul>
+      @for (recipe of recipeService.filteredBySearchRecipes(); track $index) {
+        <li>
+          <a [routerLink]="['/recipes', recipe.id]">{{ recipe.name }}</a>
+        </li>
+      }
+    </ul>
+  </nav>
 </section>
+
