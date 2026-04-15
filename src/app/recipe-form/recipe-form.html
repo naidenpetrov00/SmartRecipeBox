@@ -1,0 +1,10 @@
+<form [formGroup]="recipeForm" (ngSubmit)="onSubmit()" class="recipe-form">
+  <input id="title" type="text" placeholder="Title" formControlName="recipeTitle" />
+  <textarea
+    id="description"
+    placeholder="Description..."
+    formControlName="recipeDetails"
+  ></textarea>
+  <input id="image-url" type="url" placeholder="Paste image URL..." formControlName="recipeImage" />
+  <button type="submit">Add Recipe</button>
+</form>

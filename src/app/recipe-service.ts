@@ -24,4 +24,22 @@ export class RecipeService {
       ),
     );
   }
+
+  addRecipe(recipe: { recipeTitle: string; recipeDetails: string; recipeImage: string }) {
+    this.recipes.update((recipes) => {
+      const lastId = recipes.at(-1)?.id ?? 0;
+
+      return [
+        ...recipes,
+        {
+          id: lastId + 1,
+          name: recipe.recipeTitle,
+          description: recipe.recipeDetails,
+          imgUrl: recipe.recipeImage,
+          isFavorite: false,
+          ingredients: [],
+        },
+      ];
+    });
+  }
 }

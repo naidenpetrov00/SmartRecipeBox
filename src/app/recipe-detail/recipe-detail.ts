@@ -28,7 +28,7 @@ export class RecipeDetail {
   protected readonly servings = signal(1);
 
   protected readonly adjustedIngredients = computed<Ingredient[]>(() =>
-    this.recipe().ingredients.map((ingredient) => ({
+    this.recipe().ingredients!.map((ingredient) => ({
       ...ingredient,
       quantity: ingredient.quantity * this.servings(),
     })),
