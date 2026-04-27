@@ -2,11 +2,12 @@ import { Component, computed, inject, input, signal } from '@angular/core';
 import { Ingredient, RecipeModel } from '../models';
 
 import { ActivatedRoute } from '@angular/router';
+import { MatButtonModule } from '@angular/material/button';
 import { RecipeService } from '../recipe-service';
 
 @Component({
   selector: 'app-recipe-detail',
-  imports: [],
+  imports: [MatButtonModule],
   templateUrl: './recipe-detail.html',
   styleUrl: './recipe-detail.css',
 })
@@ -21,8 +22,8 @@ export class RecipeDetail {
     console.log(this.id);
   }
 
-  protected readonly recipe = computed(() =>
-    this.recipeService.recipes().find((r) => r.id == this.id)!,
+  protected readonly recipe = computed(
+    () => this.recipeService.recipes().find((r) => r.id == this.id)!,
   );
 
   protected readonly servings = signal(1);

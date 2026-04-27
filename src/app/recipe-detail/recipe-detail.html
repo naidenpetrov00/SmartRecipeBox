@@ -4,8 +4,8 @@
   <img [src]="recipe().imgUrl" [alt]="recipe().name" />
 
   <p>Servings: {{ servings() }}</p>
-  <button type="button" (click)="increaseServings()">+</button>
-  <button type="button" [disabled]="servings() <= 1" (click)="decreaseServings()">-</button>
+  <button matMiniFab type="button" (click)="increaseServings()">+</button>
+  <button matMiniFab type="button" [disabled]="servings() <= 1" (click)="decreaseServings()">-</button>
 
   <ul>
     @for (ingredient of adjustedIngredients(); track ingredient.name) {
