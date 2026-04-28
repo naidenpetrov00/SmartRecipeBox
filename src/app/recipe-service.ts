@@ -25,7 +25,12 @@ export class RecipeService {
     );
   }
 
-  addRecipe(recipe: { recipeTitle: string; recipeDetails: string; recipeImage: string }) {
+  addRecipe(recipe: {
+    recipeTitle: string;
+    authorEmail: string;
+    recipeDetails: string;
+    recipeImage: string;
+  }) {
     this.recipes.update((recipes) => {
       const lastId = recipes.at(-1)?.id ?? 0;
 
@@ -34,6 +39,7 @@ export class RecipeService {
         {
           id: lastId + 1,
           name: recipe.recipeTitle,
+          authorEmail: recipe.authorEmail,
           description: recipe.recipeDetails,
           imgUrl: recipe.recipeImage,
           isFavorite: false,

@@ -5,6 +5,7 @@ export const MOCK_RECIPES: RecipeModel[] = [
     id: 1,
     name: 'Spaghetti Carbonara',
     description: 'A classic Italian pasta dish.',
+    authorEmail: 'demo@email.com',
     imgUrl: 'https://miro.medium.com/v2/resize:fit:1032/1*3pNsGsnR309Wpjb0PA99DQ.png',
     isFavorite: true,
     ingredients: [
@@ -19,6 +20,7 @@ export const MOCK_RECIPES: RecipeModel[] = [
     id: 2,
     name: 'Caprese Salad',
     description: 'A simple and refreshing Italian salad.',
+    authorEmail: 'demo@email.com',
     imgUrl: 'pic_trulli.jpg',
     isFavorite: false,
     ingredients: [
