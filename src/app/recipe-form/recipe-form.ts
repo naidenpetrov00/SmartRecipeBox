@@ -1,8 +1,16 @@
 import { Component, inject, signal } from '@angular/core';
-import { FormField, form } from '@angular/forms/signals';
+import { FormField, form, submit } from '@angular/forms/signals';
 
 import { MatButtonModule } from '@angular/material/button';
+import { RecipeModel } from '../models';
 import { RecipeService } from '../recipe-service';
+
+const initialrecipe = {
+  recipeTitle: '',
+  authorEmail: '',
+  recipeDetails: '',
+  recipeImage: '',
+};
 
 @Component({
   selector: 'app-recipe-form',
@@ -12,33 +20,23 @@ import { RecipeService } from '../recipe-service';
 })
 export class RecipeForm {
   private recipeService = inject(RecipeService);
-  protected recipeModel = signal({
-    recipeTitle: '',
-    authorEmail: '',
-    recipeDetails: '',
-    recipeImage: '',
-  });
+  protected recipeModel = signal(initialrecipe);
 
   protected readonly recipeForm = form(this.recipeModel);
 
   protected onSubmit(event: Event): void {
     event.preventDefault();
 
-    if (
-      !this.recipeModel().recipeTitle ||
-      !this.recipeModel().authorEmail ||
-      !this.recipeModel().recipeDetails ||
-      !this.recipeModel().recipeImage
-    ) {
-      console.log('Invalid Input');
-      return;
-    }
+    submit(this.recipeForm, async () => {
+      this.recipeService.addRecipe({
+        recipeTitle: this.recipeModel().recipeTitle,
+        authorEmail: this.recipeModel().authorEmail,
+        recipeDetails: this.recipeModel().recipeDetails,
+        recipeImage: this.recipeModel().recipeImage,
+      });
 
-    this.recipeService.addRecipe({
-      recipeTitle: this.recipeModel().recipeTitle,
-      authorEmail: this.recipeModel().authorEmail,
-      recipeDetails: this.recipeModel().recipeDetails,
-      recipeImage: this.recipeModel().recipeImage,
+      this.recipeForm().reset();
+      this.recipeModel.set(initialrecipe);
     });
   }
 }
