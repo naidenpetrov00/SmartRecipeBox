@@ -22,11 +22,11 @@ export class RecipeForm {
   protected recipeModel = signal(initialrecipe);
 
   protected readonly recipeForm = form(this.recipeModel, (path) => {
-    required(path.recipeTitle);
-    required(path.authorEmail);
-    email(path.authorEmail);
-    required(path.recipeDetails);
-    required(path.recipeImage);
+    required(path.recipeTitle, { message: 'Title should not be empty' });
+    required(path.authorEmail,{message:"Email should not be empty"});
+    email(path.authorEmail,{message:"Email is not valid"});
+    required(path.recipeDetails,{message:"Details should not be empty"});
+    required(path.recipeImage,{message:"Image Url should not be empty"});
   });
 
   protected onSubmit(event: Event): void {

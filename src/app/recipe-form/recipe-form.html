@@ -1,16 +1,48 @@
 <form (submit)="onSubmit($event)" class="recipe-form">
   <input id="title" type="text" placeholder="Title" [formField]="recipeForm.recipeTitle" />
+  @if (recipeForm.recipeTitle().touched() && recipeForm.recipeTitle().invalid()) {
+    <ul>
+      @for (error of recipeForm.recipeTitle().errors(); track error.kind) {
+        <li>{{ error.message }}</li>
+      }
+    </ul>
+  }
+
   <input id="email" type="email" placeholder="Email" [formField]="recipeForm.authorEmail" />
+  @if (recipeForm.authorEmail().touched() && recipeForm.authorEmail().invalid()) {
+    <ul>
+      @for (error of recipeForm.authorEmail().errors(); track error.kind) {
+        <li>{{ error.message }}</li>
+      }
+    </ul>
+  }
+
   <textarea
     id="description"
     placeholder="Description..."
     [formField]="recipeForm.recipeDetails"
   ></textarea>
+  @if (recipeForm.recipeDetails().touched() && recipeForm.recipeDetails().invalid()) {
+    <ul>
+      @for (error of recipeForm.recipeDetails().errors(); track error.kind) {
+        <li>{{ error.message }}</li>
+      }
+    </ul>
+  }
+
   <input
     id="image-url"
     type="url"
     placeholder="Paste image URL..."
     [formField]="recipeForm.recipeImage"
   />
+  @if (recipeForm.recipeImage().touched() && recipeForm.recipeImage().invalid()) {
+    <ul>
+      @for (error of recipeForm.recipeImage().errors(); track error.kind) {
+        <li>{{ error.message }}</li>
+      }
+    </ul>
+  }
+
   <button matButton="elevated" type="submit">Add Recipe</button>
 </form>
