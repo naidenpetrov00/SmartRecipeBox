@@ -1,8 +1,7 @@
 import { Component, inject, signal } from '@angular/core';
-import { FormField, form, submit } from '@angular/forms/signals';
+import { FormField, email, form, required, submit } from '@angular/forms/signals';
 
 import { MatButtonModule } from '@angular/material/button';
-import { RecipeModel } from '../models';
 import { RecipeService } from '../recipe-service';
 
 const initialrecipe = {
@@ -22,7 +21,13 @@ export class RecipeForm {
   private recipeService = inject(RecipeService);
   protected recipeModel = signal(initialrecipe);
 
-  protected readonly recipeForm = form(this.recipeModel);
+  protected readonly recipeForm = form(this.recipeModel, (path) => {
+    required(path.recipeTitle);
+    required(path.authorEmail);
+    email(path.authorEmail);
+    required(path.recipeDetails);
+    required(path.recipeImage);
+  });
 
   protected onSubmit(event: Event): void {
     event.preventDefault();
